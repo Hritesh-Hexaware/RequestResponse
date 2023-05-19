@@ -35,11 +35,9 @@ export class UserController {
 
     return user;
   }
-  @ApiConsumes('application/xml')
-  @ApiProduces('application/xml')
-  //@UseInterceptors(XmlRequestInterceptor)
+  @UseInterceptors(XmlRequestInterceptor)
   @Post()
-  @Header('content-type', 'application/xml')
+  @Header('Content-Type', 'application/xml')
   create(@Body() user: User) {
     return this.userService.create(user);
   }

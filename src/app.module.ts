@@ -8,6 +8,7 @@ import { AppService } from "./app.service";
 import { LoggerMiddleware } from "./middlewares/logger.middleware";
 import { UserModule } from "./modules/user.module";
 import { User } from "./entities/user.entity";
+import { XMLMiddleware } from "./middlewares/xml-parser.middleware";
 //import { NestjsConsumesProducesModule } from "nestjs-consumes-produces";
 
 
@@ -50,6 +51,6 @@ const entities = [User];
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes("*");
+    consumer.apply(LoggerMiddleware, XMLMiddleware).forRoutes("*");
   }
 }
